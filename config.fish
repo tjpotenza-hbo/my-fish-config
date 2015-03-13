@@ -11,15 +11,15 @@ set default_user tj
 function load_function_dir -d "Config function that loads all *.fish files in the passed directory"
     if test -e "$argv[1]"
         for x in (ls "$argv[1]" | grep '\.fish$')
-            . "$argv[1]/$x"
+            source "$argv[1]/$x"
         end
     end
 end
 
 function load_module -d "Config function that loads a given module"
     set -l module_path "$config_path/modules/$argv[1]"
-    . "$module_path/path.fish"
-    . "$module_path/variables.fish"
+    source "$module_path/path.fish"
+    source "$module_path/variables.fish"
     load_function_dir "$module_path/functions"
 end
 
